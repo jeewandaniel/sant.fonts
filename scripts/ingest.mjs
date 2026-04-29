@@ -184,6 +184,36 @@ function blurb(family, category) {
   return `An open-source ${noun} from the Google Fonts library.`;
 }
 
+/**
+ * Families to skip — icon fonts, emoji fonts, music notation. Rendering
+ * a pangram in any of these gives a tofu mess because every glyph is a
+ * UI icon, not a letter.
+ */
+const SKIP_FAMILIES = new Set([
+  "Material Icons",
+  "Material Icons Outlined",
+  "Material Icons Round",
+  "Material Icons Sharp",
+  "Material Icons Two Tone",
+  "Material Symbols",
+  "Material Symbols Outlined",
+  "Material Symbols Rounded",
+  "Material Symbols Sharp",
+  "Music Symbols",
+  "Noto Music",
+  "Noto Sans Symbols",
+  "Noto Sans Symbols 2",
+  "Noto Emoji",
+  "Noto Color Emoji",
+]);
+
+function shouldSkip(item) {
+  if (SKIP_FAMILIES.has(item.family)) return true;
+  // Drop anything without a Latin subset — unrenderable in our chrome.
+  if (!Array.isArray(item.subsets) || !item.subsets.includes("latin")) return true;
+  return false;
+}
+
 async function main() {
   console.log(`→ fetching Google Fonts catalogue (sort: popularity)`);
   const res = await fetch(ENDPOINT);
@@ -195,8 +225,12 @@ async function main() {
     process.exit(1);
   }
   const data = await res.json();
-  const items = data.items || [];
-  console.log(`  got ${items.length} families`);
+  const allItems = data.items || [];
+  const items = allItems.filter((it) => !shouldSkip(it));
+  console.log(
+    `  got ${allItems.length} families · keeping ${items.length} ` +
+    `(skipped ${allItems.length - items.length} icon/emoji/non-Latin)`,
+  );
 
   /** Sort key — already by popularity from the API, so rank is index. */
   const records = items.map((it, rank) => {
