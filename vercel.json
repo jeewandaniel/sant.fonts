@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "node scripts/ingest.mjs && next build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": "out",
+  "framework": null,
+  "trailingSlash": true,
+  "github": {
+    "silent": true
+  }
+}

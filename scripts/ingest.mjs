@@ -24,12 +24,15 @@ const OUT = resolve(__dirname, "../public/fonts.json");
 
 const KEY = process.env.GOOGLE_FONTS_API_KEY;
 if (!KEY) {
-  console.error(
-    "Missing GOOGLE_FONTS_API_KEY. Get one (free) at console.cloud.google.com\n" +
-    "→ enable 'Web Fonts Developer API' → create API key → run again with:\n" +
-    "  GOOGLE_FONTS_API_KEY=... node scripts/ingest.mjs",
+  // Soft-fail so Vercel builds without the env var still succeed using
+  // the manifest already committed to public/fonts.json. The weekly
+  // GitHub workflow + the env-set Vercel deploy will refresh it.
+  console.warn(
+    "GOOGLE_FONTS_API_KEY not set — skipping ingestion. Build will use\n" +
+    "the existing public/fonts.json. Set the env var to refresh from\n" +
+    "the Google Fonts API.",
   );
-  process.exit(1);
+  process.exit(0);
 }
 
 const ENDPOINT =
