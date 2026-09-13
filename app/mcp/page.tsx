@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CodeBlock, GitHubLink, ProseSection, SimplePage } from "@/components/SimplePage";
 
 export const metadata: Metadata = {
-  title: "MCP — sant.fonts",
+  title: "MCP",
   description:
     "A Model Context Protocol server that lets agents like Claude Code search the sant.fonts catalog and pick pairings.",
 };

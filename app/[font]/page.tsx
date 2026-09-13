@@ -21,9 +21,9 @@ export function generateMetadata({
   params: { font: string };
 }): Metadata {
   const font = getFontBySlug(params.font);
-  if (!font) return { title: "Not found — sant.fonts" };
+  if (!font) return { title: "Not found" };
 
-  const title = `${font.family} — free ${font.category} font · sant.fonts`;
+  const title = `${font.family} — free ${font.category} font`;
   const description = `${font.blurb} ${font.weights.length} weights, ${font.license}, designed by ${font.designer}. Specimen, copy CSS, ship.`;
   const url = `${BASE}/${font.slug}`;
 

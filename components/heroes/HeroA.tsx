@@ -120,7 +120,12 @@ export function HeroA() {
             ref={inputRef}
             value={text}
             onChange={(e) => setLines(e.target.value.split("\n"))}
-            onFocus={() => setFocused(true)}
+            onFocus={() => {
+              setFocused(true);
+              if (text.trim() === DEFAULT_LINES.join("\n").trim()) {
+                setLines([""]);
+              }
+            }}
             onBlur={() => setFocused(false)}
             rows={2}
             spellCheck={false}

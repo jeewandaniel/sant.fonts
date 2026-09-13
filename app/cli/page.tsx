@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CodeBlock, GitHubLink, ProseSection, SimplePage } from "@/components/SimplePage";
 
 export const metadata: Metadata = {
-  title: "CLI — sant.fonts",
+  title: "CLI",
   description:
     "A terminal-first companion to the sant.fonts catalog. Search, fetch CSS, install pairings — without leaving your editor.",
 };

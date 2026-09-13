@@ -4,7 +4,7 @@ import { FONTS } from "@/lib/fonts";
 import { ProseSection, SimplePage } from "@/components/SimplePage";
 
 export const metadata: Metadata = {
-  title: "About — sant.fonts",
+  title: "About",
   description:
     "A free, zero-account catalog of open-source typography. Specimen, pair, copy CSS — built quietly in Christchurch.",
 };

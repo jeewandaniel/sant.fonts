@@ -25,12 +25,7 @@ export function Footer() {
           <div className="md:col-span-3 md:col-start-8">
             <FooterCol
               label="Library"
-              links={[
-                { label: "Browse all", href: "/" },
-                { label: "By designer", href: "/designers" },
-                { label: "By license", href: "/licenses" },
-                { label: "Submit a font", href: "/submit" },
-              ]}
+              links={[{ label: "Browse all", href: "/" }]}
             />
           </div>
 
@@ -40,7 +35,6 @@ export function Footer() {
               links={[
                 { label: "CLI", href: "/cli" },
                 { label: "MCP server", href: "/mcp" },
-                { label: "API", href: "/api" },
                 { label: "GitHub", href: "https://github.com/jeewandaniel/sant.fonts", external: true },
               ]}
             />
